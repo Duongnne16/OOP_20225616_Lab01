@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\VBK Computer\OneDrive\Máy tính\Java_Project\.metadata\.plugins\org.eclipse.jdt.core
+107573622.index
+1865797976.index
+4219279280.index
+1288848795.index
+3172083331.index
+3120534589.index
