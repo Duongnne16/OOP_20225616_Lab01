@@ -1,0 +1,52 @@
+Questions:
+-	What happens if users choose “Cancel”?
+-	How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help). 
+Answers:
+-	What happens if users choose “Cancel”?
+Khi người dùng chọn "Cancel", phương thức JOptionPane.showConfirmDialog() sẽ trả về một giá trị hằng số là JOptionPane.CANCEL_OPTION. 
+Tuy nhiên, trong mã hiện tại, trường hợp này chưa được xử lý. 
+Do đó, nếu người dùng chọn "Cancel", chương trình sẽ vẫn xử lý kết quả này như "No" vì mã chỉ kiểm tra điều kiện JOptionPane.YES_OPTION.
+
+-	How to customize the options to users, e.g. only two options: “Yes” and “No”, OR “I do” and “I don’t” (Suggestion: Use Javadocs or using Eclipse/Netbean IDE help). 
+Có thể tùy chỉnh các nút hiển thị trong hộp thoại xác nhận bằng cách sử dụng phương thức JOptionPane.showOptionDialog() thay vì JOptionPane.showConfirmDialog(). 
+Phương thức này cho phép chỉ định các tùy chọn tùy chỉnh.
+
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+
+    public static void main(String[] args) {
+        String[] options = {"I do", "I don't"};
+        int option = JOptionPane.showOptionDialog(null, 
+                "Do you want to change to the first class ticket?", 
+                "Choose an Option", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                options, 
+                options[0]);
+
+        String message;
+        switch (option) {
+            case 0: // "I do"
+                message = "You've chosen: I do";
+                break;
+            case 1: // "I don't"
+                message = "You've chosen: I don't";
+                break;
+            case JOptionPane.CLOSED_OPTION:
+                message = "Dialog was closed";
+                break;
+            default:
+                message = "No option selected";
+                break;
+        }
+
+        JOptionPane.showMessageDialog(null, message);
+        System.exit(0);
+    }
+}
+```
+1. Tùy chỉnh các lựa chọn: Mảng options chứa các văn bản tùy chỉnh cho các nút, ví dụ: "I do" và "I don't".
+2. Sử dụng showOptionDialog: Phương thức JOptionPane.showOptionDialog() cho phép chỉ định các văn bản nút tùy chỉnh và cung cấp nhiều kiểm soát hơn về giao diện của hộp thoại. Bằng cách này, có thể hiển thị các lựa chọn có nội dung theo ý muốn, thay vì sử dụng các nút mặc định như "Yes" và "No".
+3. Xử lý khi đóng hộp thoại: Phương thức showOptionDialog() trả về giá trị nguyên đại diện cho nút được nhấn. Nếu hộp thoại bị đóng mà không có lựa chọn nào, nó sẽ trả về giá trị JOptionPane.CLOSED_OPTION. Có thể xử lý trường hợp này bằng cách sử dụng câu lệnh switch.
